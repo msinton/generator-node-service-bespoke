@@ -1,0 +1,51 @@
+---
+  extends:
+    - recommended/esnext
+    - recommended/esnext/style-guide
+    - recommended/node
+    - recommended/node/style-guide
+
+  env:
+    es6: true
+    node: true
+    mocha: true
+
+  parserOptions:
+    ecmaVersion: 8
+    sourceType: module
+
+  rules:
+    no-invalid-this: off
+    quotes:
+      - error
+      - double
+      - allowTemplateLiterals: true
+    indent:
+      - error
+      - 2
+    object-curly-spacing:
+      - error
+      - never
+    sort-imports: off
+    curly: off
+    import/prefer-default-export: off
+    space-before-function-paren:
+      - error
+      - never
+    array-bracket-spacing:
+      - error
+      - never
+    template-curly-spacing:
+      - error
+      - never
+    object-property-newline: off
+    arrow-parens: off
+    import/no-commonjs: off
+    import/no-nodejs-modules: off
+    no-process-exit: off
+    object-curly-newline: off
+    prefer-arrow-callback: off
+    no-multiple-empty-lines:
+      - error
+      - max: 2
+        maxBOF: 0

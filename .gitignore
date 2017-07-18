@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+generators/
+*.log
+.idea/
+example-project/
+.DS_STORE

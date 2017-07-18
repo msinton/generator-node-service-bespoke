@@ -1,0 +1,54 @@
+{
+  "name": "<%= packageName %>",
+  "private": false,
+  "version": "1.0.0",
+  "description": "<%= packageDescription %>",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://<%= gitUrl %>/<%= packageName %>.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+
+  "scripts": {
+  <% if (hasFeature("TESTS")) { %>
+    "test-coverage": "istanbul cover --include-all-sources -x 'src/**/__tests__/*' -x 'lib/*' ./node_modules/mocha/bin/_mocha -- $npm_package_options_mocha",
+    "test": "./node_modules/mocha/bin/mocha",
+    "test-watch": "mocha -w",
+    "bamboo-test": "JUNIT_REPORT_PATH=test_reports/test.xml ./node_modules/mocha/bin/mocha || true",
+  <% } %>
+    "lint": "eslint src",
+    "check": "npm run lint && npm run test",
+    "preversion": "npm run check"
+  },
+
+  "dependencies": {
+    "config": "^1.26.0",
+    <% if (isServicePackage("express")) { %>
+    "express": "^4.15.0",
+    <% } %>
+    <% if (isServicePackage("restify")) { %>
+    "restify": "^5.0.0",
+    <% } %>
+    <% if (shouldUseNewRelic) { %>
+    "newrelic": "^1.40.0",
+    <% } %>
+    "ramda": "^0.24.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "~3.4.0",
+    "eslint-config-recommended": "^1.5.0",
+    "eslint-plugin-node": "^5.1.0",
+    "husky": "0.14.3",
+    "nsp": "2.6.3"<% if (hasFeature("TESTS")) { %>,
+
+    "istanbul": "^0.4.0",
+    "mocha-jenkins-reporter": "^0.2.2",
+    "mocha": "^2.4.0",
+    "sinon": "^1.17.4"
+    <% } %>
+  }
+}
